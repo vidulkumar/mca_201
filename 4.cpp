@@ -17,16 +17,19 @@ int main()
 		q.push(str[i]);
 		st.push(str[i]);
 	}
-	for (int i=0;i<str.length();i++)
+	int flag = 1;
+	for (int i=0;i<str.length()&& flag==1;i++)
 	{
+		if(st.top()!=q.front())
+		{
 		
+			cout<<"Not Palindrome\n";
+			flag=0;
+		}
+		st.pop();
+		q.pop();
 	}
-	if(st.top()==q.front())
-			cout<<"Palindrome\n";
-	else
-		cout<<"Not Palindrome\n";
-}
-void isPalindrome()
-{
+	if(flag==1)
+		cout<<"Palindrome\n";
 	
 }
