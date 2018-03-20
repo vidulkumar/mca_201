@@ -10,32 +10,37 @@ int main(void)
 {
 	queue<char>q;
 	queue<char>q1;
-	stack<string>st;
+	stack<char>st;
+	stack<char>st1;
 	string str;
 	int length;
-	length == strlen(str);
+	length = str.length();
 	
 	cout<<"Enter the String\t";
 	cin>>str;
 	if (str.length() > 0)
 	{
-		int length = str.size()/2;
+		int length = str.length()/2;
 		for(int i=0;i<length;i++)
 		{
-			q.enqueue();
+			st.push(i);
 			
 		}
 		for(int i=length;i>=0;i--)
 		{
-			q1.dequeue();
+			st1.push(i);
 		}
-		if(q1==q)
+		for(int i=0;i<length;i++)
 		{
-		 cout<<"Entered string"<<str<<" is a palindrome";
-		}
-		else
-			cout<<"Entered string"<<str<<" is a not a palindrome";
 		
+		 if(st==st1)
+		 {
+		  cout<<"Entered string"<<str<<" is a palindrome";
+		  }
+ 	   
+	   	else
+			cout<<"Entered string"<<str<<" is a not a palindrome";
+        }
 	}
 	else
 		cout<<"Entered string"<<str<<" is a palindrome";
