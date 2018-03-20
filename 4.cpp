@@ -1,47 +1,32 @@
-//Program to check if entered string is a palindrome or not.
-
 #include<iostream>
-#include<string>
-#include<queue>
 #include<stack>
+#include<queue>
 using namespace std;
 
-int main(void)
+int main()
 {
-	queue<char>q;
-	queue<char>q1;
-	stack<char>st;
-	stack<char>st1;
-	string str;
-	int length;
-	length = str.length();
-	
-	cout<<"Enter the String\t";
-	cin>>str;
-	if (str.length() > 0)
+    stack<char>st;
+    queue<char>q;
+    string str;
+    
+    cout<<"Enter the String \t";
+    cin>>str;
+    
+    for (int i=0;i<str.length();i++)
 	{
-		int length = str.length()/2;
-		for(int i=0;i<length;i++)
-		{
-			st.push(i);
-			
-		}
-		for(int i=length;i>=0;i--)
-		{
-			st1.push(i);
-		}
-		for(int i=0;i<length;i++)
-		{
-		
-		 if(st==st1)
-		 {
-		  cout<<"Entered string"<<str<<" is a palindrome";
-		  }
- 	   
-	   	else
-			cout<<"Entered string"<<str<<" is a not a palindrome";
-        }
+		q.push(str[i]);
+		st.push(str[i]);
 	}
+	for (int i=0;i<str.length();i++)
+	{
+		
+	}
+	if(st.top()==q.front())
+			cout<<"Palindrome\n";
 	else
-		cout<<"Entered string"<<str<<" is a palindrome";
+		cout<<"Not Palindrome\n";
+}
+void isPalindrome()
+{
+	
 }
