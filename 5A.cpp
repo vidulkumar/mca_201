@@ -1,4 +1,4 @@
-//Template queue class
+//Template QUEUE class
 
 
 #include<iostream>
@@ -18,6 +18,7 @@ class queue
         queue (int size = SIZE);
         void enQueue(Q elem);
         void deQueue();
+        Q displayQueue();
         Q showFront();
         int size();
         bool isFull();
@@ -44,7 +45,7 @@ bool queue<Q>::isEmpty()
 template<class Q>
 bool queue<Q>::isFull()
 {
-    if (rear == size-1 && front == 0 || rear == front -1)
+    if (rear == (SIZE-1))
 		return true;
 	else 
 		return false;
@@ -53,19 +54,27 @@ template <class Q>
 Q queue<Q>::showFront()
 {
     if(isEmpty())
-        cout<<"Queue is empty";
+        cout<<"Queue is empty\n";
     else
-        return Arr[front];
+        cout<<"Front Element is "<<Arr[front]<<"\n";
 }
 template <class Q>
 void queue<Q>::enQueue(Q elem)
 {
     if(isFull())
         cout<<"Queue is full!\n";
+    if(front==-1)
+    {
+    	front=0;
+    	rear=front;
+    	Arr[front]=elem;
+    	count++;
+	}
+   
     else
     {
-        rear++;
-        Arr[rear]=elem;
+    
+        Arr[++rear]=elem;
         count++;
     }
 }
@@ -76,23 +85,44 @@ void queue<Q>::deQueue()
         cout<<"Queue is empty!\n";
     else
     {
-        cout<<"Element removed is "<<Arr[front];
+        cout<<"Element removed is "<<Arr[front]<<"\n";
         front++;
         count--;
     }
 }
-
+template<class Q>
+int queue<Q>::size()
+{
+	if(isEmpty())
+		cout<<"Queue Empty\n";
+	else
+		cout<<"Current Size of Queue is "<<count<<"\n";
+}
+template <class Q>
+Q queue<Q>::displayQueue()
+{
+    if(isEmpty())
+        cout<<"Queue is empty\n";
+    else
+    {
+    	cout<<"Elements in the Queue are \t";
+    	for(int i=front;i<=rear;i++)
+		{
+    			cout<<Arr[i]<<" ";
+		}
+		cout<<"\n";
+	}
+}
 int main()
 {
     char ch;
     int size,count;
     queue<int>q(10);
-    
     do
     {
-        cout<<"-------MENU--------";
-        cout<<"1.Enqueue\n2.Dequeue\n3.Show Front\n4.Size\n";
-        cout<<"E to exit";
+        cout<<"-------MENU--------\n";
+        cout<<"1.Enqueue\n2.Dequeue\n3.Show Front\n4.Size\n5.Display Queue\n";
+        cout<<"Enter E to Exit\n";
         cin>>ch;
         switch(ch)
         {
@@ -108,17 +138,20 @@ int main()
                 break;
             case '3':
                 q.showFront();
+                break;
             case '4':
                 q.size();
                 break;
+            case '5':
+            	q.displayQueue();
+            	break;
             default:
-                if(ch!='e'||ch!='E')
+                if((ch!='e')||(ch!='E'))
                     cout<<"Invalid!\n";
-            break;
+            		break;
                 
         };
     }
     while((ch!='e')||(ch!='E'));
     return 0;
 }
-
