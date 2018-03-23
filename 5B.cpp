@@ -1,68 +1,71 @@
 //WAP to implement stack using STL Queue
 
 #include<iostream>
-#include<stack>
 #include<queue>
-#define SIZE 10
 
 using namespace std;
 class stack
 {	
-	int top;
+	int count = 0;
+	queue <int>Q,Q1;
 	public:
-		stack()
-		{
-			top=-1;
-		}
 		
-		int s[SIZE];
 		bool isEmpty();
-		bool isFull();
-		void topStack();
-		int size;
+		void displayStack();
+		int size();
+		int top();
 		void push(int elem);
 		int pop();
 		
 };
-bool stack::isFull()
+int stack::top()
 {
-	if (top = SIZE-1)
-		return true;
-	else 
-		return false;
+    if(isEmpty())
+        return -1;
+    else
+        return Q.back();
 }
 bool stack::isEmpty()
 {
-	if(top<0)
+	if(Q.empty())
 		return true;
 	else
 		return false;
-}
+};
 void stack::push(int elem)
 {
-	if(isFull())
-		cout<<"Stack Overflow ";
-	else
-		top++;
-		s[top]>>elem;
-}
+		Q.push(elem);
+};
 int stack::pop()
 {
-	is(isEmpty())
-		cout<<"Stack Undeflow ";
-	else
+	if (Q.empty())
 	{
-		int x;
-		x=s[top];
-		top--;
-		cout<<"Pop Element is"<< x;
+	    return -1;
 	}
-}
+	while(Q.size()!=1)
+	{
+	    Q1.push(Q.front());
+	    Q.pop();
+	}
+	Q.pop();
+    
+    queue<int>Q2=Q;
+    
+    Q=Q1;
+    Q1=Q2;
+};
+int stack::size()
+{
+    return Q.size();
+ 
+};
+
 int main()
 {
 	struct stack st;
 	st.push(4);
-	st.topStack();
+	cout<<st.top();
 	st.push(7);
-	st.pop();
+	st.push(8);
+	cout<<st.top();
 }
