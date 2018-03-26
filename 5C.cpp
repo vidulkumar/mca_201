@@ -1,5 +1,4 @@
-//WAP TO IMPLEMENT queue USING stack.
-
+// Program to implement QUEUE using STACK
 #include<iostream>
 #include<stack>
 
@@ -7,50 +6,75 @@ using namespace std;
 
 class queue
 {
-    int top = -1;
+    int last;
     stack<int>st,st1;
     public:
-        int front();
         void enQueue(int elem);
         int deQueue();
+        bool isEmpty();
+        int front();
+        int rear();
         void displayQueue();
 };
 
-int queue::front()
+bool queue::isEmpty()
 {
     if(st.empty())
+        return true;
+    else
+        return false;
+}
+
+int queue::front()
+{
+    if(isEmpty())
         return -1;
     else
         return st.top();
-        
 };
+
+int queue::rear()
+{
+	if(st.empty())
+		return -1;
+	else
+		return last;
+}
 void queue::enQueue(int elem)
 {
-    if (st.empty())
-    {
-        st.push(elem);
-    }
-    while(st.size()!=-1)
-    {
-        st1.push(st.top());
-    }
-    st.push(elem);
-    for(int i=0;i<st.size();i++)
-    {
-        st.push(st1.top());
-    }
+	last = elem;
+    st.push(elem);    
 };
 int queue::deQueue()
 {
-    st.pop();
+    int temp,temp1;
+    if(st.empty())
+        cout<<"Queue is Empty!\n";
+    else
+        while(!st.empty())
+        {
+            temp = st.top();
+            st.pop();
+            st1.push(temp);
+        }
+        temp1 = st1.top();
+        st1.pop();
+        while(!st1.empty()) 
+           {
+               temp = st1.top();
+               st1.pop();
+            st.push(temp);
+           }
+        return temp1;
 };
+
 int main()
 {
     queue Q;
     Q.enQueue(4);
     Q.enQueue(5);
     Q.enQueue(6);
-    Q.front();
+    cout<<Q.rear();
     Q.deQueue();
-    Q.front();
+    cout<<Q.rear();
 }
